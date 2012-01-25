@@ -1,7 +1,12 @@
 require 'rake'
 
+desc "The whole shebang. Fetches all dependences, compiles native code, and links
+      the dotfiles into the proper places. Suggestion: run `rvm use system` before
+      doing this, as Command-T likes to be linked against that"
+task :full_install => %w( fetch_dependencies compile install )
+
 desc "Hook our dotfiles into system-standard positions."
-task :install => %w( fetch_dependencies compile ) do
+task :install do
   linkables = Dir.glob('*/**{.symlink}')
 
   skip_all = false
