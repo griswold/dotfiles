@@ -1,13 +1,6 @@
 #!/usr/bin/env bash
 # until I figure out how I want to set this up better (submodules?)
-VIM=$HOME/.vim
-BUNDLE=$VIM/bundle
-
-echo "Installing pathogen"
-mkdir -p $VIM/autoload $BUNDLE; \
-curl -so $VIM/autoload/pathogen.vim \
-    https://raw.github.com/tpope/vim-pathogen/HEAD/autoload/pathogen.vim
-
+BUNDLE=$HOME/.vim/bundle
 
 echo "Installing Fugitive"
 git clone https://github.com/tpope/vim-fugitive.git $BUNDLE/fugitive
@@ -25,5 +18,4 @@ rvm use system
 rake make
 rvm use $old_rvm
 popd
-
 
