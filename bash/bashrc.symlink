@@ -74,3 +74,10 @@ done
 
 # put dotfile bin scripts on path
 export PATH=$PATH:$DOTFILES/bin
+
+# hidden stuff, machine-specific business, or other things not checked in can be added through .bashrc.local
+if [[ -a $HOME/.bashrc.local ]]
+then
+  source $HOME/.bashrc.local
+fi
+
