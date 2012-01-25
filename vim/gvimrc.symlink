@@ -1,7 +1,7 @@
 " Appearance
 colorscheme jellybeans
 set anti
-set lines=999 columns=100
+set lines=999 columns=200
 set guioptions=egmrt
 set guifont=Monaco:h14
 
