@@ -1,4 +1,13 @@
+" ----------------------------------------------------------------------------
+"  Basic setup
+" ----------------------------------------------------------------------------
+call pathogen#infect()
+syntax enable
+filetype plugin indent on
 set noswapfile
+set number                " line numbers
+set nocompatible
+set encoding=utf-8    " Set default encoding to UTF-8
 
 " ----------------------------------------------------------------------------
 "  Text Formatting
@@ -12,9 +21,8 @@ set softtabstop=2          " yep, two
 set shiftwidth=2           " ..
 set tabstop=4
 set expandtab              " expand tabs to spaces
-set nosmarttab             " fuck tabs
+set nosmarttab
 set formatoptions+=n       " support for numbered/bullet lists
-"set textwidth=80           " wrap at 80 chars by default
 set virtualedit=block      " allow virtual edit in visual block ..
 
 " ----------------------------------------------------------------------------
@@ -22,15 +30,7 @@ set virtualedit=block      " allow virtual edit in visual block ..
 " ----------------------------------------------------------------------------
 
 " lead with ,
-let mapleader = ","
-
-" exit to normal mode with 'jj'
-inoremap jj <ESC>
-
-
-" reflow paragraph with Q in normal and visual mode
-nnoremap Q gqap
-vnoremap Q gq
+let mapleader = " "
 
 " sane movement with wrap turned on
 nnoremap j gj
@@ -44,6 +44,19 @@ vnoremap <Up> gk
 inoremap <Down> <C-o>gj
 inoremap <Up> <C-o>gk
 
+" NERD Commenter
+map <leader>/ <plug>NERDCommenterToggle<CR>
+" In case I ever decide I want to toggle comments while in edit mode
+" imap <leader>/  <Esc><plug>NERDCommenterToggle<CR>i
+
+" ----------------------------------------------------------------------------
+" Searching
+" ----------------------------------------------------------------------------
+set hlsearch    " highlight matches
+set incsearch   " incremental searching
+set ignorecase  " searches are case insensitive...
+set smartcase   " ... unless they contain at least one capital letter
+
 " ----------------------------------------------------------------------------
 "  UI
 " ----------------------------------------------------------------------------
@@ -52,14 +65,32 @@ set ruler                  " show the cursor position all the time
 set noshowcmd              " don't display incomplete commands
 set nolazyredraw           " turn off lazy redraw
 set number                 " line numbers
-set wildmenu               " turn on wild menu
-set wildmode=list:longest,full
 set ch=2                   " command line height
 set backspace=2            " allow backspacing over everything in insert mode
 set whichwrap+=<,>,h,l,[,] " backspace and cursor keys wrap to
 set shortmess=filtIoOA     " shorten messages
 set report=0               " tell us about changes
 set nostartofline          " don't jump to the start of line when scrolling
+
+" ----------------------------------------------------------------------------
+" Wild settings
+" ----------------------------------------------------------------------------
+
+set wildmenu               " turn on wild menu
+set wildmode=list:longest,full
+
+" Disable output and VCS files
+set wildignore+=*.o,*.out,*.obj,.git,*.rbc,*.class,.svn,*.gem
+
+" Disable archive files
+set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz
+
+" Ignore bundler and sass cache
+set wildignore+=*/vendor/gems/*,*/vendor/cache/*,*/.bundle/*,*/.sass-cache/*
+
+" Disable temp and backup files
+set wildignore+=*.swp,*~,._*
+
 
 
 " ----------------------------------------------------------------------------
@@ -68,18 +99,14 @@ set nostartofline          " don't jump to the start of line when scrolling
 
 set showmatch              " brackets/braces that is
 set mat=5                  " duration to show matching brace (1/10 sec)
-set incsearch              " do incremental searching
 set laststatus=2           " always show the status line
-set ignorecase             " ignore case when searching
-set nohlsearch             " don't highlight searches
-set visualbell             " shut the fuck up
-
+set visualbell             " shut up
 
 " ---------------------------------------------------------------------------
 "  Strip all trailing whitespace in file
 " ---------------------------------------------------------------------------
-
 function! StripWhitespace ()
-    exec ':%s/ \+$//gc'
+    exec ':%s/ \+$//g'
 endfunction
-map ,s :call StripWhitespace ()<CR>
+map <leader>s :call StripWhitespace ()<CR>
+
