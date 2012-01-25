@@ -1,0 +1,25 @@
+export CLICOLOR=1
+export LSCOLORS=gxfxcxdxCxegedabagacad
+
+export EDITOR="vim"
+
+DOTFILES=$HOME/.dotfiles
+
+# use vi key bindings
+set -o vi
+
+# Rails things
+alias sc='./script/console'
+
+# General aliases
+alias ll='ls -l'
+
+# Source all sh scripts in dotfiles. Skips the plugins bundled with vim
+# should probably come up with more elegant solution for that...
+for file in $( find $DOTFILES -name '*.sh' -not -path '*vim.symlink/bundle*')
+do
+  source $file
+done
+
+# put dotfile bin scripts on path
+export PATH=$PATH:$DOTFILES/bin
