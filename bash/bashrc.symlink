@@ -16,6 +16,12 @@ alias sc='./script/console'
 
 # General aliases
 alias ll='ls -l'
+alias la='ls -A'
+
+# "fuzzy find"
+function ff() {
+  find . -iname $1
+}
 
 # Source all sh scripts in dotfiles. Skips the plugins bundled with vim
 # should probably come up with more elegant solution for that...
