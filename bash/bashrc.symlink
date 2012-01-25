@@ -44,7 +44,19 @@ function find_git_branch {
 }
 PROMPT_COMMAND="find_git_branch; $PROMPT_COMMAND"
 
-STARTCOLOR='\[\e[36m\]';
+# color prompt on "remote" machines. Make it scarier on scary machines.
+case `hostname` in
+  jgriswold-15mbp*)
+    STARTCOLOR="\[\e[36m\]"
+    ;;
+  web*)
+    STARTCOLOR="\[\e[31m\]"
+    ;;
+  *)
+    STARTCOLOR="\[\e[32m\]"
+    ;;
+  esac
+
 RESETCOLORS="\[\e[0m\]"
 export PS1="$STARTCOLOR\h$RESETCOLORS \W\$git_branch% "
 
