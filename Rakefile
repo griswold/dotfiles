@@ -1,7 +1,7 @@
 require 'rake'
 
 desc "Hook our dotfiles into system-standard positions."
-task :install do
+task :install => %w( fetch_dependencies compile ) do
   linkables = Dir.glob('*/**{.symlink}')
 
   skip_all = false
@@ -54,16 +54,19 @@ task :uninstall do
   end
 end
 
+desc "Fetches all submodule dependencies"
+task :fetch_dependencies do
+  sh "git submodule init && git submodule update"
+end
+
 desc <<-EOD
-    Compiles the command-t vim plugin. Suggestion: run
+    Compiles native code where necessary. Suggestion: run
     `rvm use system` before running this task, as command-t
     likes to be linked to 1.8.7 ruby apparently
     EOD
-task :compile_command_t do
+task :compile do
   dir = File.join(File.dirname(__FILE__), 'vim', 'vim.symlink', 'bundle', 'command-t')
   sh "cd #{dir} && rake make"
 end
-
-task :full_install => ['install', 'compile_command_t']
 
 task :default => 'install'
