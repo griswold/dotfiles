@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+# until I figure out how I want to set this up better (submodules?)
+VIM=$HOME/.vim
+BUNDLE=$VIM/bundle
+
+echo "Installing pathogen"
+mkdir -p $VIM/autoload $BUNDLE; \
+curl -so $VIM/autoload/pathogen.vim \
+    https://raw.github.com/tpope/vim-pathogen/HEAD/autoload/pathogen.vim
+
+
+echo "Installing Fugitive"
+git clone https://github.com/tpope/vim-fugitive.git $BUNDLE/fugitive
+
+echo "Installing NERDCommenter"
+git clone https://github.com/scrooloose/nerdcommenter.git $BUNDLE/nerdcommenter
+
+echo "Installing Command-T"
+COMMAND_T_DIR=$BUNDLE/command-t
+git clone https://github.com/wincent/Command-T.git $COMMAND_T_DIR
+# assume using rvm for now
+old_rvm = $(rvm current)
+pushd $COMMAND_T_DIR
+rvm use system
+rake make
+rvm use $old_rvm
+popd
+
+
