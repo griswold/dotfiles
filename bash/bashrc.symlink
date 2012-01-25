@@ -1,12 +1,9 @@
+#--------------------------------------------------------------------------------
+# General setup
+#--------------------------------------------------------------------------------
 export CLICOLOR=1
 export LSCOLORS=gxfxcxdxCxegedabagacad
-
 export EDITOR="vim"
-
-DOTFILES=$HOME/.dotfiles
-
-# prompt
-export PS1="\h) \W"
 
 # use vi key bindings
 set -o vi
@@ -23,9 +20,42 @@ function ff() {
   find . -iname $1
 }
 
+#--------------------------------------------------------------------------------
+# prompt
+#--------------------------------------------------------------------------------
+# include current git branch name in prompt when in a git repository
+function find_git_branch {
+  local dir=. head
+  until [ "$dir" -ef / ]; do
+      if [ -f "$dir/.git/HEAD" ]; then
+          head=$(< "$dir/.git/HEAD")
+          if [[ $head == ref:\ refs/heads/* ]]; then
+              git_branch="[${head##*/}]"
+          elif [[ $head != '' ]]; then
+              git_branch='[detached]'
+          else
+              git_branch='[unknown]'
+          fi
+          return
+      fi
+      dir="../$dir"
+  done
+  git_branch=''
+}
+PROMPT_COMMAND="find_git_branch; $PROMPT_COMMAND"
+
+STARTCOLOR='\[\e[36m\]';
+RESETCOLORS="\[\e[0m\]"
+export PS1="$STARTCOLOR\h$RESETCOLORS \W\$git_branch% "
+
+#--------------------------------------------------------------------------------
+# Sourcing of other scripts in dotfiles repo
+#--------------------------------------------------------------------------------
+DOTFILES=$HOME/.dotfiles
+
 # Source all sh scripts in dotfiles. Skips the plugins bundled with vim
 # should probably come up with more elegant solution for that...
-for file in $( find $DOTFILES -name '*.sh' -not -path '*vim.symlink/bundle*')
+for file in $( find $DOTFILES -name '*.sh' -not -path '*vim.symlink/bundle*' )
 do
   source $file
 done
