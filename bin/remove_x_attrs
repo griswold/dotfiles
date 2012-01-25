@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# removes extended attributes that get associated with files OS X. In the past
+# I've had problems with images not getting served properly by apache because of those
+for i in $(ls -Rl@ | grep -P '^[^\.]' | grep -P '^\s+\w' | awk '{print $1}' | sort -u); \
+	do echo Removing $i ... >&2; \ 
+	find . | xargs xattr -d $i 2>/dev/null ; done

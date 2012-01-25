@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby
+# given text location, prints lat lon
+require 'json'
+require 'uri'
+require 'shellwords'
+
+loc = URI.escape(ARGV.join(" "))
+url = "http://maps.googleapis.com/maps/api/geocode/json?address=#{loc}&sensor=false"
+json = `curl -s #{Shellwords.shellescape(url)}`
+
+parsed = JSON.parse(json)
+
+exit(1) if parsed["status"] != "OK" || parsed["results"].empty?
+
+loc = parsed["results"][0]["geometry"]["location"]
+
+puts [loc["lat"], loc["lng"]].join(" ")
+

@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+# pretty print JSON
+require 'json'
+puts JSON.pretty_generate(JSON.parse(ARGF.read))
