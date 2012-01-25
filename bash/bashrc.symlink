@@ -5,6 +5,9 @@ export EDITOR="vim"
 
 DOTFILES=$HOME/.dotfiles
 
+# prompt
+export PS1="\h) \W"
+
 # use vi key bindings
 set -o vi
 

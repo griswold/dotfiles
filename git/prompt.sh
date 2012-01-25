@@ -20,4 +20,4 @@ function find_git_branch {
 
 PROMPT_COMMAND="find_git_branch; $PROMPT_COMMAND"
 
-export PS1="\W\$git_branch% "
+export PS1="$PS1\$git_branch% "
