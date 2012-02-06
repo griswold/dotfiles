@@ -13,3 +13,6 @@
 [submodule "vim/vim.symlink/bundle/easymotion"]
 	path = vim/vim.symlink/bundle/easymotion
 	url = https://github.com/Lokaltog/vim-easymotion.git
+[submodule "vim/vim.symlink/bundle/snipmate"]
+	path = vim/vim.symlink/bundle/snipmate
+	url = https://github.com/msanders/snipmate.vim.git
