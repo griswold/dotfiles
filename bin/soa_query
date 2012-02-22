@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+# converts from logging format to query string
+# a=[1, 2, 3] b=[4, 5, 6] => a=1&a=2&a=3&b=4&b=5&b=6
+require 'cgi'
+
+body = ARGV.join
+params = body.scan(/(\w+)=\[(.*?)\]/).inject([]) do |pairs, (key, cs_values)|
+  cs_values.strip.split(/,\s*/).each do |val|
+    pairs << "#{CGI.escape(key)}=#{CGI.escape(val)}"
+  end
+  pairs
+end
+puts params.join("&")
