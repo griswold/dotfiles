@@ -91,6 +91,12 @@ set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz
 " Ignore bundler and sass cache
 set wildignore+=*/vendor/gems/*,*/vendor/cache/*,*/.bundle/*,*/.sass-cache/*
 
+" Ignore minified assets
+set wildignore+=*.min.js,*.min.css
+
+" Ignore vendored rails install
+set wildignore+=vendor/rails/**
+
 " Disable temp and backup files
 set wildignore+=*.swp,*~,._*
 
