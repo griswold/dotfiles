@@ -49,6 +49,9 @@ map <leader>/ <plug>NERDCommenterToggle<CR>
 " In case I ever decide I want to toggle comments while in edit mode
 " imap <leader>/  <Esc><plug>NERDCommenterToggle<CR>i
 
+" run current script in test client
+map <Leader>r :!/Users/jgriswold/code/ventana/app/script/test_client %:p<CR>
+
 " ----------------------------------------------------------------------------
 " Searching
 " ----------------------------------------------------------------------------
