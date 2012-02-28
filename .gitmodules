@@ -1,21 +1,29 @@
 [submodule "vim/vim.symlink/bundle/nerdcommenter"]
 	path = vim/vim.symlink/bundle/nerdcommenter
 	url = https://github.com/scrooloose/nerdcommenter.git
+	ignore = untracked
 [submodule "vim/vim.symlink/bundle/fugitive"]
 	path = vim/vim.symlink/bundle/fugitive
 	url = https://github.com/tpope/vim-fugitive.git
+	ignore = untracked
 [submodule "vim/vim.symlink/bundle/command-t"]
 	path = vim/vim.symlink/bundle/command-t
 	url = https://github.com/wincent/Command-T.git
+	ignore = untracked
 [submodule "vim/vim.symlink/bundle/endwise"]
 	path = vim/vim.symlink/bundle/endwise
 	url = https://github.com/tpope/vim-endwise.git
+	ignore = untracked
 [submodule "vim/vim.symlink/bundle/easymotion"]
 	path = vim/vim.symlink/bundle/easymotion
 	url = https://github.com/Lokaltog/vim-easymotion.git
+	ignore = untracked
 [submodule "vim/vim.symlink/bundle/snipmate"]
 	path = vim/vim.symlink/bundle/snipmate
 	url = https://github.com/msanders/snipmate.vim.git
+	ignore = untracked
 [submodule "vim/vim.symlink/bundle/align"]
 	path = vim/vim.symlink/bundle/align
 	url = https://github.com/vim-scripts/Align
+	ignore = untracked
+
