@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+# how much is one USD with in a given currency
+
+require 'json'
+require 'net/https'
+require 'uri'
+
+uri = URI.parse("https://raw.github.com/currencybot/open-exchange-rates/master/latest.json")
+http = Net::HTTP.new(uri.host, uri.port)
+http.use_ssl = true
+http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+json = http.get(uri.path).body
+puts JSON.parse(json)["rates"][ARGV[0]]
